@@ -28,4 +28,4 @@ def upcoming():
     return "There was an error retreiving the data."
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=80)
