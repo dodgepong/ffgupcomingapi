@@ -1,1 +1,4 @@
 -r common_requirements.in
+
+gevent
+gunicorn
