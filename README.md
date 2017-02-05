@@ -39,7 +39,7 @@ The `expected_by` and `last_updated` fields are in milliseconds since the Unix E
 
 If you want to host this yourself, you will need to set up a Python 3.6 environment. It is recommended that you create a virtualenv for the project.
 
-To install all dev dependencies, make sure your virtualenv is active type `pip install -r dev_requirements.txt`.
+To install all dev dependencies, make sure your virtualenv is active, and type `pip install -r dev_requirements.txt`.
 
 You will need to set a couple environment variables:
 
