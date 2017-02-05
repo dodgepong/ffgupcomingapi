@@ -31,6 +31,19 @@ A typical result entry looks like this:
 
 You can filter on any of the fields by adding `field=value` to the URL query. For example, to find all upcoming products for Android: Netrunner, the URL will look like this: `https://ffgupcomingapi.herokuapp.com/?root_collection=Android:%20Netrunner%20The%20Card%20Game`
 
+Filtered items are case-sensitive and only respond to exact matches in the cache database.
+
 The `expected_by` and `last_updated` fields are in milliseconds since the Unix Epoch. Just divide by 1000 for standard Unix timestamps.
 
-Queries against this API actually hit a cache that is updated every minute, rather than querying directly against the FFG-hosted page and scraping on every request.
+## Installing
+
+If you want to host this yourself, you will need to set up a Python 3.6 environment. It is recommended that you create a virtualenv for the project.
+
+To install all dev dependencies, make sure your virtualenv is active type `pip install -r dev_requirements.txt`.
+
+You will need to set a couple environment variables:
+
+* `MONGODB_URI` - Connection string for your MongoDB instance
+* `DB_NAME` - The name of the database that will be used on the MonboDB instance
+
+To run a dev server, type `python app.py`.
