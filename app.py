@@ -14,14 +14,18 @@ mongo_client = MongoClient(os.environ.get('MONGODB_URI'))
 
 @app.route("/")
 def upcoming():
-    upcoming_db = mongo_client.upcoming
+    upcoming_db = mongo_client[os.environ.get('DB_NAME')]
     products_collection = upcoming_db.products
 
-    to_return = []
+    results = []
     for result in products_collection.find(request.args):
-        to_return.append(result)
+        result.pop('_id')
+        results.append(result)
 
-    return jsonify(to_return)
+    return jsonify({
+        'count': len(results),
+        'results': results
+    })
 
 def update_upcoming():
     page = requests.get('https://www.fantasyflightgames.com/en/upcoming/')
@@ -33,7 +37,7 @@ def update_upcoming():
             lines = script.split(';')
             upcoming = json.loads(lines[0].split(' = ')[1])
 
-            upcoming_db = mongo_client.upcoming
+            upcoming_db = mongo_client[os.environ.get('DB_NAME')]
             products_collection = upcoming_db.products
 
             # wipe the table and completely replace it
