@@ -33,9 +33,9 @@ def update_upcoming():
     scripts = tree.xpath('//script/text()')
 
     for script in scripts:
-        if 'upcoming_data = [{' in script:
+        if 'upcoming_data = [{"' in script:
             lines = script.split(';')
-            upcoming = json.loads(lines[0].split(' = ')[1])
+            upcoming_data = json.loads(lines[0].split(' = ')[1])
 
             upcoming_db = mongo_client[os.environ.get('DB_NAME')]
             products_collection = upcoming_db.products
@@ -47,7 +47,7 @@ def update_upcoming():
             products_collection.create_index('collection')
             products_collection.create_index('name')
             products_collection.create_index('product')
-            products_collection.insert_many(upcoming)
+            products_collection.insert_many(upcoming_data)
 
             break
 
