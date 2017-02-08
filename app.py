@@ -17,6 +17,13 @@ app = Flask(__name__)
 
 mongo_client = MongoClient(os.environ.get('MONGODB_URI'))
 
+@app.before_first_request
+def setup_logging():
+    if not app.debug:
+        # In production mode, add log handler to sys.stderr.
+        app.logger.addHandler(logging.StreamHandler())
+        app.logger.setLevel(logging.INFO)
+
 @app.route("/")
 def upcoming():
     upcoming_db = mongo_client[os.environ.get('DB_NAME')]
