@@ -5,6 +5,7 @@ from flask import Flask, jsonify, json, request
 from lxml import html
 from pymongo import MongoClient
 from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.triggers.interval import IntervalTrigger
 import requests
 
@@ -59,7 +60,7 @@ def update_upcoming():
                 else:
                     # the product was not in the upcoming list, so remove it from the cache
                     logger.info('Deleting item %s from database', product_name)
-                    products_collection.delete_on({'product': product_name})
+                    products_collection.delete_one({'product': product_name})
 
             # there has to be a better way to do this, after the above
             for new_upcoming_product in upcoming_data:
@@ -72,6 +73,9 @@ def update_upcoming():
             return
     logger.warning('Upcoming data not found!')
 
+jobstores = {
+    'default': MongoDBJobStore(database=os.environ.get('DB_NAME'), collection='jobs')
+}
 scheduler = BackgroundScheduler()
 scheduler.start()
 scheduler.add_job(
