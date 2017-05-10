@@ -4,7 +4,7 @@ This is a simple API to give easier insight into the content of the [FFG Upcomin
 
 ## How to use
 
-This API is currently live on a free Heroku dyno at this location: `https://ffgupcomingapi.herokuapp.com/`
+This API is currently live on a free Heroku dyno at this location: [`https://ffgupcomingapi.herokuapp.com/`](https://ffgupcomingapi.herokuapp.com/)
 
 With no filtering, this endpoint will return a list of all items on the upcoming list.
 
