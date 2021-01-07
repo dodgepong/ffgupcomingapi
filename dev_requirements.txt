@@ -4,26 +4,26 @@
 #
 #    pip-compile --output-file dev_requirements.txt dev_requirements.in
 #
-apscheduler==3.3.1
+apscheduler==3.3.1        # via -r common_requirements.in
 astroid==1.4.9            # via pylint
 certifi==2019.9.11        # via requests
 chardet==3.0.4            # via requests
 click==6.7                # via flask, pip-tools
 first==2.0.1              # via pip-tools
+flask==1.0                # via -r common_requirements.in
 idna==2.7                 # via requests
-flask==1.0
 isort==4.2.5              # via pylint
 itsdangerous==0.24        # via flask
 jinja2==2.10.1            # via flask
 lazy-object-proxy==1.2.2  # via astroid
-lxml==3.7.2
+lxml==4.6.2               # via -r common_requirements.in
 markupsafe==0.23          # via jinja2
 mccabe==0.6.1             # via pylint
-pip-tools==1.8.0
-pylint==1.6.5
-pymongo==3.4.0
+pip-tools==1.8.0          # via -r dev_requirements.in
+pylint==1.6.5             # via -r dev_requirements.in
+pymongo==3.4.0            # via -r common_requirements.in
 pytz==2016.10             # via apscheduler, tzlocal
-requests==2.20.0
+requests==2.20.0          # via -r common_requirements.in
 six==1.10.0               # via apscheduler, astroid, pip-tools, pylint
 tzlocal==1.3              # via apscheduler
 urllib3==1.24.3           # via requests
@@ -31,4 +31,4 @@ werkzeug==0.15.6          # via flask
 wrapt==1.10.8             # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via apscheduler
+# setuptools
